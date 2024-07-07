@@ -28,12 +28,3 @@ def mergeTwoLists(list1, list2):
     return head.next
 
 
-class Solution(object):
-    pass
-
-
-class ListNode:
-    def __init__(self):
-        self.next = None
-
-    pass

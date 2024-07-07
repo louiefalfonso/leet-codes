@@ -18,6 +18,3 @@ def lengthOfLastWord(s: str) -> int:
         i -= 1
     return length
 
-
-class Solution:
-    pass
