@@ -8,7 +8,7 @@
 
  */
 
- import java.util.Scanner;
+import java.util.Scanner;
 
 public class GameWinner {
     public static void main(String[] args) {
@@ -19,6 +19,7 @@ public class GameWinner {
         int bobScore = 0;
 
         System.out.println("Enter scores for Alice and Bob for 3 rounds:");
+        
         for (int i = 0; i < 3; i++) {
             int aliceRoundScore = scanner.nextInt();
             int bobRoundScore = scanner.nextInt();
