@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
         // Find the maximum number of candies that any kid currently has.
         int maxCandies = Integer.MIN_VALUE;
+        
         for (int candy : candies) {
             maxCandies = Math.max(maxCandies, candy);
         }
