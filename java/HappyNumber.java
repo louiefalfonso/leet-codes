@@ -18,43 +18,34 @@ Input: n = 2
 Output: false
  */
 
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+class Solution {
 
-public class HappyNumber {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a positive integer: ");
-        int number = scanner.nextInt();
+    // Method to determine if a number is a happy number.
+    public boolean isHappy(int n) {
+        // Initialize slow and fast pointers to detect cycle.
+        int slowRunner = n;
+        int fastRunner = getNext(n);
 
-        if (isHappy(number)) {
-            System.out.println(number + " is a happy number.");
-        } else {
-            System.out.println(number + " is not a happy number.");
+        // Loop until the two pointers meet or we find a happy number.
+        while (slowRunner != fastRunner) {
+            slowRunner = getNext(slowRunner); // Move slow pointer by one step.
+            fastRunner = getNext(getNext(fastRunner)); // Move fast pointer by two steps.
         }
 
-        scanner.close();
+        // If the slow runner reaches 1, then the number is happy.
+        // If the pointers meet and it's not at 1, then a cycle is detected and the number is not happy.
+        return slowRunner == 1;
     }
 
-    private static boolean isHappy(int n) {
-        Set<Integer> seenNumbers = new HashSet<>();
-
-        while (n != 1 && !seenNumbers.contains(n)) {
-            seenNumbers.add(n);
-            n = sumOfSquares(n);
+    // Helper method to calculate the next number in the sequence.
+    private int getNext(int number) {
+        int sumOfSquares = 0;
+        while (number > 0) {
+            int digit = number % 10; // Extract the last digit of the current number.
+            sumOfSquares += digit * digit; // Add the square of the extracted digit to the sum.
+            number /= 10; // Remove the last digit from the current number.
         }
-
-        return n == 1; // If we end with 1, it's a happy number
-    }
-
-    private static int sumOfSquares(int num) {
-        int sum = 0;
-        while (num > 0) {
-            int digit = num % 10; // Get the last digit
-            sum += digit * digit; // Square it and add to sum
-            num /= 10; // Remove the last digit
-        }
-        return sum;
+        return sumOfSquares;
     }
 }
+
