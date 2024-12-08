@@ -23,8 +23,7 @@ We then place spaces before those characters.
 
         // Use two pointers: 'i' for string 's', and 'j' for the spaces array
         for (int i = 0, j = 0; i < s.length(); ++i) {
-            // Check if we have more spaces to add and if the current position matches the
-            // next space position
+            // Check if we have more spaces to add and if the current position matches the next space position
             if (j < spaces.length && i == spaces[j]) {
                 // If so, append a space to the result
                 result.append(' ');
