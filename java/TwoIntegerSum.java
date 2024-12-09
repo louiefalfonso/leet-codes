@@ -38,8 +38,7 @@ class Solution {
             // Store the current value and its index in the map
             indexMap.put(current, i);
         }
-        // Note: The problem statement guarantees that there will always be exactly one
-        // solution,
+        // Note: The problem statement guarantees that there will always be exactly one solution,
         // so no need to return null or throw an exception here.
         throw new IllegalArgumentException("No two sum solution found");
     }
