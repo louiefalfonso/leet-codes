@@ -19,33 +19,31 @@
  
  */
 
+ import java.util.HashSet;
+ import java.util.Set;
+ 
  class Solution {
     public int lengthOfLongestSubstring(String s) {
-        int maxLength = 0; // Variable to store the maximum length of substring found
+        Set<Character> set = new HashSet<>();
+        int maxLength = 0;
+        int left = 0;
+        for (int right = 0; right < s.length(); right++) {
 
-        // Check all possible substrings
-        for (int i = 0; i < s.length(); i++) {
-            for (int j = i + 1; j <= s.length(); j++) {
-                String substring = s.substring(i, j); // Get the current substring
-                if (hasUniqueCharacters(substring)) { // Check if it has all unique characters
-                    maxLength = Math.max(maxLength, substring.length()); // Update maxLength
+            if (!set.contains(s.charAt(right))) {
+                set.add(s.charAt(right));
+                maxLength = Math.max(maxLength, right - left + 1);
+
+            } else {
+                while (s.charAt(left) != s.charAt(right)) {
+                    set.remove(s.charAt(left));
+                    left++;
                 }
+                set.remove(s.charAt(left));
+                left++;
+                set.add(s.charAt(right));
             }
+
         }
-
-        return maxLength; // Return the maximum length found
+        return maxLength;
     }
-
-    // to check if a string has all unique characters
-    private boolean hasUniqueCharacters(String str) {
-        boolean[] charSet = new boolean[128]; // Assuming ASCII characters
-        for (char c : str.toCharArray()) {
-            if (charSet[c]) { // If character is already seen
-                return false; // Not unique
-            }
-            charSet[c] = true; // Mark character as seen
-        }
-        return true; // All characters are unique
-    }
-
 }
