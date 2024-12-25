@@ -2,7 +2,7 @@
   Sort Integers by The Number of 1 Bits - 1356
  */
 
- import java.util.Arrays; // Importing Arrays class for sort function
+ import java.util.Arrays;
 
 class Solution {
     public int[] sortByBits(int[] arr) {
