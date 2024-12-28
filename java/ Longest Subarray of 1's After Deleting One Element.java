@@ -1,5 +1,5 @@
 /*
- * Longest Subarray of 1's After Deleting One Element - 1493
+ * Longest Subarray of 1's After Deleting One Element - 1493 (Sliding Window)
  */
 
  class Solution {
