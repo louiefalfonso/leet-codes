@@ -2,13 +2,12 @@
  * Merge Intervals - 56
  */
 
- import java.util.Arrays;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
 class Solution {
 
-    // Method to merge overlapping intervals.
     public int[][] merge(int[][] intervals) {
         // Sort the intervals by their starting times.
         Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
