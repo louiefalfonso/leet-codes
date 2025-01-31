@@ -1,72 +1,31 @@
-/*
- * HackerRank Interview Preparation Kit - Hash Tables: Ransom Note
- */
-
-
-import java.util.HashMap;
-import java.util.Scanner;
+// Ransom Note - 383
 
 class Solution {
+    
+     // Returns whether the ransom note can be constructed from the magazine.
+    public boolean canConstruct(String ransomNote, String magazine) {
+        // Create a frequency array to count the occurrences of each letter in the
+        // magazine
+        int[] cnt = new int[26];
 
-    // Complete the checkMagazine function below.
-    static void checkMagazine(String[] magazine, String[] note) {
-        HashMap<String, Integer> freqMap = new HashMap<>();
-        int flag = 0;
-        for (String magazineWord : magazine) {
-            if (freqMap.containsKey(magazineWord)) {
-                int freq = freqMap.get(magazineWord) + 1;
-                freqMap.put(magazineWord, freq);
-            } else
-                freqMap.put(magazineWord, 1);
+        // Count the occurrences of each letter in the magazine
+        for (int i = 0; i < magazine.length(); ++i) {
+            // Convert the character to its corresponding index in the frequency array
+            // by subtracting the ASCII value of 'a'
+            ++cnt[magazine.charAt(i) - 'a'];
         }
-        for (String noteWord : note) {
-            if (freqMap.containsKey(noteWord)) {
-                int freq = freqMap.get(noteWord) - 1;
-                if (freq == 0)
-                    freqMap.remove(noteWord);
-                else
-                    freqMap.put(noteWord, freq);
-            } else {
-                System.out.println("No");
-                flag = 1;
-                break;
+
+        // Try to construct the ransom note from the magazine
+        for (int i = 0; i < ransomNote.length(); ++i) {
+            // If the current letter in the ransom note is not available in the magazine,
+            // return false
+            if (--cnt[ransomNote.charAt(i) - 'a'] < 0) {
+                return false;
             }
         }
-        if (flag == 0)
-            System.out.println("Yes");
-    }
 
-    private static final Scanner scanner = new Scanner(System.in);
-
-    public static void main(String[] args) {
-        String[] mn = scanner.nextLine().split(" ");
-
-        int m = Integer.parseInt(mn[0]);
-
-        int n = Integer.parseInt(mn[1]);
-
-        String[] magazine = new String[m];
-
-        String[] magazineItems = scanner.nextLine().split(" ");
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
-        for (int i = 0; i < m; i++) {
-            String magazineItem = magazineItems[i];
-            magazine[i] = magazineItem;
-        }
-
-        String[] note = new String[n];
-
-        String[] noteItems = scanner.nextLine().split(" ");
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
-        for (int i = 0; i < n; i++) {
-            String noteItem = noteItems[i];
-            note[i] = noteItem;
-        }
-
-        checkMagazine(magazine, note);
-
-        scanner.close();
+        // If all letters in the ransom note can be constructed from the magazine,
+        // return true
+        return true;
     }
 }
