@@ -1,5 +1,5 @@
 /*
-Valid Anagram
+Valid Anagram - 49
 
 Given two strings s and t, return true if the two strings are anagrams of each other, 
 otherwise return false.
@@ -19,23 +19,37 @@ import java.util.HashMap;
 import java.util.Map;
 
 class Solution {
+
+   
+     //Returns whether two strings are anagrams of each other.
+
     public boolean isAnagram(String s, String t) {
+        // If the strings have different lengths, they cannot be anagrams
         if (s.length() != t.length()) {
             return false;
         }
 
-        Map<Character, Integer> sCount = new HashMap<>();
-        Map<Character, Integer> tCount = new HashMap<>();
+        // Map to store the count of each character in both strings
+        Map<Character, Integer> count = new HashMap<>();
 
-        for (char c : s.toCharArray()) {
-            sCount.put(c, sCount.getOrDefault(c, 0) + 1);
+        // Iterate over both strings simultaneously and update the character counts
+        for (int i = 0; i < s.length(); i++) {
+            // Increment the count of the current character in string s
+            count.put(s.charAt(i), count.getOrDefault(s.charAt(i), 0) + 1);
+
+            // Decrement the count of the current character in string t
+            count.put(t.charAt(i), count.getOrDefault(t.charAt(i), 0) - 1);
         }
 
-        for (char c : t.toCharArray()) {
-            tCount.put(c, tCount.getOrDefault(c, 0) + 1);
+        // If the strings are anagrams, all character counts should be zero
+        for (int v : count.values()) {
+            // If any count is non-zero, the strings are not anagrams
+            if (v != 0) {
+                return false;
+            }
         }
 
-        return sCount.equals(tCount);
-
+        // If all counts are zero, the strings are anagrams
+        return true;
     }
 }
