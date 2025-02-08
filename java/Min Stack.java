@@ -1,4 +1,6 @@
 // Min Stack - 155
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 class MinStack {
     // stk1 keeps track of all the elements in the stack.
