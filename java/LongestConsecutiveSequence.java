@@ -1,5 +1,5 @@
 /*
-Longest Consecutive Sequence
+Longest Consecutive Sequence -128
 
 Given an array of integers nums, return the length of the longest consecutive
 sequence of elements that can be formed.
@@ -24,32 +24,36 @@ Output: 7
 
  class Solution {
      public int longestConsecutive(int[] nums) {
-
-         // Use a HashSet to store the numbers for O(1) lookups
+         // Create a HashSet to store the numbers for efficient lookups
          HashSet<Integer> numSet = new HashSet<>();
          for (int num : nums) {
              numSet.add(num);
          }
 
+         // Initialize the longest streak to 0
          int longestStreak = 0;
 
+         // Iterate through the numbers in the set
          for (int num : numSet) {
-             // Only check for the start of a sequence
+             // Check if the current number is the start of a sequence (i.e., `num - 1` is
+             // not in the set)
              if (!numSet.contains(num - 1)) {
                  int currentNum = num;
                  int currentStreak = 1;
 
-                 // Count the length of the sequence
+                 // Keep incrementing the current number and streak as long as the next number is
+                 // in the set
                  while (numSet.contains(currentNum + 1)) {
                      currentNum++;
                      currentStreak++;
                  }
 
-                 // Update the longest streak found
+                 // Update the longest streak if the current streak is longer
                  longestStreak = Math.max(longestStreak, currentStreak);
              }
          }
 
+         // Return the longest streak found
          return longestStreak;
      }
  }
