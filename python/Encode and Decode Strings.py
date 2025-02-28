@@ -4,6 +4,7 @@ class Solution:
 
     # Encodes a list of strings into a single string
     def encode(self, strs: List[str]) -> str:
+        
         # Use a generator expression to create a string for each input string
         # The string is in the format "{length}#{string}", where length is the length of the string
         return ''.join(f"{len(s)}#{s}" for s in strs)
