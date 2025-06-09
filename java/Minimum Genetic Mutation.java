@@ -1,12 +1,17 @@
 // Minimum Genetic Mutation - 433
 
+import java.util.*;
+
 class Solution {
     public int minMutation(String startGene, String endGene, String[] bank) {
+
         Deque<String> q = new ArrayDeque<>();
         q.offer(startGene);
+        
         Set<String> vis = new HashSet<>();
         vis.add(startGene);
         int depth = 0;
+
         while (!q.isEmpty()) {
             for (int m = q.size(); m > 0; --m) {
                 String gene = q.poll();
