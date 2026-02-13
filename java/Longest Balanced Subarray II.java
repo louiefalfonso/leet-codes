@@ -7,9 +7,9 @@ class Solution {
      * Segment tree node
      */
     static class Node {
-        int l, r; // segment range
-        int mn, mx; // minimum / maximum prefix sum
-        int lazy; // lazy propagation (range add)
+        int l, r; 
+        int mn, mx; 
+        int lazy; 
     }
 
     static class SegmentTree {
